@@ -1,8 +1,11 @@
 {
   "name": "react-creater",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a package provides suitable environment for making react app.",
   "main": "index.js",
+  "bin": {
+    "cr": "./bin/rc"
+  },
   "devDependencies": {
     "autoprefixer": "6.7.2",
     "babel-core": "6.22.1",
@@ -53,6 +56,11 @@
   "keywords": [
     "react"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Vincent-yz/react-creater.git"
+  },
   "author": "vincent yeung",
-  "license": "MIT"
+  "license": "MIT",
+  "readme": "README.md"
 }
