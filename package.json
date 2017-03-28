@@ -2,7 +2,7 @@
   "name": "react-creater",
   "version": "1.0.1",
   "description": "a package provides suitable environment for making react app.",
-  "main": "index.js",
+  "main": "rc.bat",
   "bin": {
     "rc": "./bin/rc"
   },
