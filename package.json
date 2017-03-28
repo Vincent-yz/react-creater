@@ -4,7 +4,7 @@
   "description": "a package provides suitable environment for making react app.",
   "main": "index.js",
   "bin": {
-    "cr": "./bin/rc"
+    "rc": "./bin/rc"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",
