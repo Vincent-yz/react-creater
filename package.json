@@ -6,7 +6,7 @@
   "bin": {
     "rc": "./bin/rc"
   },
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "6.7.2",
     "babel-core": "6.22.1",
     "babel-eslint": "7.1.1",
@@ -54,11 +54,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react"
+    "react",
+    "app",
+    "creater"
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:Vincent-yz/react-creater.git"
+    "url": "https://github.com/Vincent-yz/react-creater.git"
   },
   "author": "vincent yeung",
   "license": "MIT",
