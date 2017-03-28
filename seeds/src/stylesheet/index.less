@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #e1e1e1;
+}
+.clearfix{
+	zoom: 1;
+	&:after{
+		clear: both;
+		content: "";
+		font-size: 0;
+		line-height: 0;
+		display: block;
+		visibility: hidden;
+	}
+}
+input[type="text"]{
+	outline: none;
+	font-size: inherit;
+	color: inherit;
+}
+a{
+	text-decoration: none;
+	// &:link,&:hover,&:visited,&:active{
+		color: inherit;
+
+	// }
+}
+ul,ol,li{
+	list-style: none;
+}
+ul,ol,li,p{
+	margin: 0;
+	padding: 0;
+}

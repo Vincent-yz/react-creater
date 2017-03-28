@@ -1,0 +1,97 @@
+@class-prefix: Api;
+
+.@{class-prefix}{
+	width: 90%;
+	margin: 15px auto;
+	&-container{
+		margin-right: 305px;
+		background-color: #fff;
+		border-radius: 5px;
+	}
+
+	&-header{
+		background-color: #f6f6f6;
+		padding: 10px;
+		font-size: 14px;
+		color: #999;
+		a{
+			color: #80bd01;
+		}
+		border-bottom: 1px solid #e5e5e5;
+	}
+
+	&-content{
+		padding: 10px;
+		&-inner{
+			margin: 0 10px;
+		}
+		&-header{
+			font-size: 15px;
+			a{
+				color: #08c;
+				font-weight: bolder;
+			}
+		}
+	}
+
+	&-collect{
+		&-title{
+			margin: 30px 0 15px 0;
+			border-bottom: 1px solid #e5e5e5;
+			font-size: 24.5px;
+			line-height: 40px;
+			font-weight: bolder;
+		}
+	}
+
+	&-item{
+		&-title{
+			margin: 30px 0 15px 0;
+			border-bottom: 1px solid #e5e5e5;
+			font-size: 17.5px;
+			line-height: 20px;
+			font-weight: bolder;
+		}
+		&-type{
+			margin: 15px 0;
+			font-size: 15px;
+			line-height: 25px;
+		}
+		&-params{
+			margin: 0 0 10px 25px;
+			code{
+				background-color: #fcfafa;
+				margin: 0 2px;
+				padding: 4px 6px;
+				border-radius: 3px;
+			}
+		}
+		&-param{
+			list-style: disc;
+			line-height: 29px;
+			font-size: 14px;
+		}
+		&-sample{
+			margin: 15px 0;
+			font-size: 15px;
+			line-height: 29px;
+			a{
+				color: #08c;
+				&:hover{
+					color: darken(#08c, 10%);
+					text-decoration: underline;
+				}
+			}
+		}
+		&-responSample{
+			div{
+				margin: 15px 0;
+				font-size: 15px;
+				line-height: 29px;
+			}
+			.code{
+				background-color: #fcfafa;
+			}
+		}
+	}
+}
