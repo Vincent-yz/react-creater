@@ -1,8 +1,7 @@
 {
   "name": "react-creater",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a package provides suitable environment for making react app.",
-  "main": "rc.bat",
   "bin": {
     "rc": "./bin/rc"
   },
@@ -55,12 +54,11 @@
   },
   "keywords": [
     "react",
-    "app",
     "creater"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vincent-yz/react-creater.git"
+    "url": "git+https://github.com/Vincent-yz/react-creater.git"
   },
   "author": "vincent yeung",
   "license": "MIT",
