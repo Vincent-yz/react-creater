@@ -7,10 +7,15 @@ var url = require('url');
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
 var appDirectory = fs.realpathSync(process.cwd());
+var reactCreaterDir = path.dirname(path.dirname(__dirname));
 // var appDirectory = '/Users/vincentyeung/Sites/react-sample';
 // var appDirectory = '/Users/vincentyeung/Sites/react-eg/fackWebPack';
 function resolveApp(relativePath) {
   return path.resolve(appDirectory, relativePath);
+}
+
+function resolveProject(relativePath){
+  return path.resolve(reactCreaterDir, relativePath);
 }
 
 // We support resolving modules according to `NODE_PATH`.
@@ -51,10 +56,6 @@ function getPublicUrl(appPackageJson) {
   return envPublicUrl || require(appPackageJson).homepage;
 }
 
-function resolveProject(fileName){
-
-}
-
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
 // Webpack needs to know it to put the right <script> hrefs into HTML even in
@@ -69,7 +70,6 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
-var reactCreaterDir = path.dirname(path.dirname(__dirname));
 var seedsDir = path.join(reactCreaterDir, 'seeds');
 var projectDir = process.cwd();
 
@@ -79,8 +79,7 @@ module.exports = {
   appPublic:       resolveApp('public'),
   appHtml:         resolveApp('public/index.html'),
   appIndexJs:      resolveApp('src/index.js'),
-  // appPackageJson:  resolveApp('package.json'),
-  appPackageJson:  path.resolve(reactCreaterDir, 'package.json'),
+  appPackageJson:  resolveProject('package.json'),
   appSrc:          resolveApp('src'),
   yarnLockFile:    resolveApp('yarn.lock'),
   testsSetup:      resolveApp('src/setupTests.js'),
@@ -91,6 +90,8 @@ module.exports = {
   reactCreaterDir: reactCreaterDir,
   seedsDir:        seedsDir,
   projectDir:      projectDir,
+  nodeCache:       resolveApp('node_modules/.cache/babel-loader'),
+  babelResolveDir: resolveProject('node_modules'),
 };
 
 

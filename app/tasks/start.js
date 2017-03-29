@@ -24,6 +24,7 @@ var fs = require('fs');
 var config = require('../config/webpack.config.dev');
 var paths = require('../config/paths');
 var exec = require('../utils/exec');
+var sh = require('shelljs');
 var Q = require('q');
 
 var useYarn = fs.existsSync(paths.yarnLockFile);
@@ -300,7 +301,10 @@ function runDevServer(host, port, protocol) {
 function run(port) {
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";
   var host = process.env.HOST || 'localhost';
+  console.log(chalk.yellow('if you run this command for first time'));
+  console.log(chalk.yellow('wait couple minutes to install dependencies...'));
   installDependencies().then(function(res){
+    sh.rm('-r', paths.nodeCache);
     setupCompiler(host, port, protocol);
     runDevServer(host, port, protocol);
   });

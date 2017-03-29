@@ -1,3 +1,20 @@
-console.log('help任务开发中..');
+'use strict';
 
-process.exit(1);
+var chalk = require('chalk');
+var showHelp = require('../utils/help');
+
+console.log('create new project');
+showHelp("rc create PROJECT_NAME", "mack a copy of default project");
+
+console.log();
+console.log('development');
+showHelp("rc start [--port]", "start a development server");
+showHelp("rc build", "create a production");
+showHelp('rc test', "testing task is now under developmenting..");
+
+console.log();
+console.log('other');
+showHelp('rc help', "show help detail");
+console.log();
+
+process.exit(0);
