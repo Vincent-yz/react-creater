@@ -8,8 +8,6 @@ var url = require('url');
 // https://github.com/facebookincubator/create-react-app/issues/637
 var appDirectory = fs.realpathSync(process.cwd());
 var reactCreaterDir = path.dirname(path.dirname(__dirname));
-// var appDirectory = '/Users/vincentyeung/Sites/react-sample';
-// var appDirectory = '/Users/vincentyeung/Sites/react-eg/fackWebPack';
 function resolveApp(relativePath) {
   return path.resolve(appDirectory, relativePath);
 }

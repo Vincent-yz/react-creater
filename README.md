@@ -26,8 +26,7 @@ And if you're not pleasure with default project, you can even change it into wha
 
 You could find the default project at `GlobalPath/rc/seeds`.
 Remind that you'd better not to remove below files:
-'seeds/index.js',
+`seeds/index.js`,`seeds/build/index.html`
 
-'seeds/build/index.html'
 for the reason that they are needed to run your project
 

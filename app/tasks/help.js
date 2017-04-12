@@ -3,8 +3,11 @@
 var chalk = require('chalk');
 var showHelp = require('../utils/help');
 
+console.log();
+console.log(chalk.blue('Usage: rc <command>'));
+console.log();
 console.log('create new project');
-showHelp("rc create PROJECT_NAME", "mack a copy of default project");
+showHelp("rc create PROJECT_NAME", "make a copy of default project");
 
 console.log();
 console.log('development');

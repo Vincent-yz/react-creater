@@ -7,6 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ManifestPlugin = require('webpack-manifest-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var paths = require('./paths');
+var path = require('path');
 var getClientEnvironment = require('./env');
 
 
@@ -128,7 +129,15 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
-        
+        query: {
+          presets: [
+            path.resolve(paths.reactCreaterDir, 'node_modules/babel-preset-react-app'),
+            path.resolve(paths.reactCreaterDir, 'node_modules/babel-preset-stage-0')
+          ],
+          plugins: [
+            path.resolve(paths.reactCreaterDir, 'node_modules/babel-plugin-transform-decorators-legacy')
+          ]
+        }
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
