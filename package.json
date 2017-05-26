@@ -1,6 +1,6 @@
 {
   "name": "react-creater",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "a package provides suitable environment for developing react app.",
   "bin": {
     "rc": "./bin/rc"
@@ -64,7 +64,20 @@
     "type": "git",
     "url": "git+https://github.com/Vincent-yz/react-creater.git"
   },
-  "author": "vincent yeung",
+  "author": {
+    "name": "vincent yeung"
+  },
   "license": "MIT",
-  "readme": "README.md"
+  "readme": "README.md",
+  "gitHead": "f3699dd5f709685a4f2368f570ec2ae38c621d14",
+  "bugs": {
+    "url": "https://github.com/Vincent-yz/react-creater/issues"
+  },
+  "homepage": "https://github.com/Vincent-yz/react-creater#readme",
+  "_id": "react-creater@1.0.4",
+  "_shasum": "6924663f95d4ac959383b9b3678e8767a00a67d7",
+  "_from": "react-creater@1.0.4",
+  "devDependencies": {
+    "lodash": "^4.17.4"
+  }
 }

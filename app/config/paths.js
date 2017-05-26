@@ -90,6 +90,7 @@ module.exports = {
   projectDir:      projectDir,
   nodeCache:       resolveApp('node_modules/.cache/babel-loader'),
   babelResolveDir: resolveProject('node_modules'),
+  rcConfig:        resolveApp('rc.conf.js'),
 };
 
 

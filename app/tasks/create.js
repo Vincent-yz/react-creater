@@ -34,5 +34,5 @@ sh.cp('-r', seedFolder + '/.', projectName);
 console.log(chalk.green("=========project initail finished !==========="));
 console.log(chalk.green("use below command"));
 console.log(chalk.green("cd " + projectName + " # enter project directory"));
-console.log(chalk.green("cr start # start development serve"));
+console.log(chalk.green("rc start # start development serve"));
 

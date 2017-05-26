@@ -26,6 +26,7 @@ var paths = require('../config/paths');
 var exec = require('../utils/exec');
 var sh = require('shelljs');
 var Q = require('q');
+var _ = require('lodash');
 
 var useYarn = fs.existsSync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
@@ -171,7 +172,7 @@ function onProxyError(proxy) {
 function addMiddleware(devServer) {
   // `proxy` lets you to specify a fallback server during development.
   // Every unrecognized request will be forwarded to it.
-  var proxy = require(paths.appPackageJson).proxy;
+  var proxy = require(paths.rcConfig).proxy;
   devServer.use(historyApiFallback({
     // Paths with dots should still use the history fallback.
     // See https://github.com/facebookincubator/create-react-app/issues/387.
@@ -207,7 +208,7 @@ function addMiddleware(devServer) {
     // of both HTTP and WebSockets to work without false positives.
     var hpm = httpProxyMiddleware(pathname => mayProxy.test(pathname), {
       target: proxy,
-      logLevel: 'silent',
+      logLevel: 'info',
       onProxyReq: function(proxyReq) {
         // Browers may send Origin headers even with same-origin
         // requests. To prevent CORS issues, we have to change
@@ -233,6 +234,22 @@ function addMiddleware(devServer) {
   // Finally, by now we have certainly resolved the URL.
   // It may be /index.html, so let the dev server try serving it again.
   devServer.use(devServer.middleware);
+}
+
+function handleProxy(devServer){
+  var proxy = require(paths.rcConfig).proxy;
+  if(!_.isPlainObject(proxy))return;
+  var key, rewrite;
+  for(key in proxy){
+    rewrite = {};
+    rewrite['^' + key] = key;
+    devServer.use(httpProxyMiddleware(key, {
+      target: proxy[key], 
+      changeOrigin: true,
+      // pathRewrite: '$1', 
+      pathRewrite: rewrite
+    }));
+  }
 }
 
 function runDevServer(host, port, protocol) {
@@ -280,7 +297,9 @@ function runDevServer(host, port, protocol) {
   });
 
   // Our custom middleware proxies requests to /index.html or a remote API.
-  addMiddleware(devServer);
+  // 原来的addMiddleware不能正确处理代理
+  // addMiddleware(devServer);
+  handleProxy(devServer);
 
   // Launch WebpackDevServer.
   devServer.listen(port, err => {
