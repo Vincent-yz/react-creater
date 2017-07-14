@@ -25,7 +25,6 @@ var config = require('../config/webpack.config.dev');
 var paths = require('../config/paths');
 var exec = require('../utils/exec');
 var sh = require('shelljs');
-var Q = require('q');
 var _ = require('lodash');
 
 var useYarn = fs.existsSync(paths.yarnLockFile);
