@@ -9,10 +9,11 @@
  */
 'use strict';
 
-const jestPath = '../../../node_modules/jest/node_modules/jest-cli/build';
-const jestModulePath = '../../../node_modules/jest/node_modules/jest-cli/node_modules';
-
 const path =   require('path');
+const reactCreaterDir = path.dirname(path.dirname(path.dirname(__dirname)));
+const jestPath = path.join(reactCreaterDir, 'node_modules/jest/node_modules/jest-cli/build');
+const jestModulePath = path.join(reactCreaterDir, 'node_modules');
+
 const realFs = require('fs');
 const fs =     require(path.join(jestModulePath, 'graceful-fs'));
 fs.gracefulify(realFs);

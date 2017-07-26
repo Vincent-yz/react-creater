@@ -10,11 +10,11 @@
 
 'use strict';
 
-const jestModulePath = '../../../node_modules/jest/node_modules/jest-cli/node_modules';
+const reactCreaterDir = path.dirname(path.dirname(path.dirname(__dirname)));
 
 const chalk = require('chalk');
 const path = require('path');
-const fs = require(path.join(jestModulePath, 'graceful-fs'));
+const fs = require(path.join(reactCreaterDir, 'node_modules', 'graceful-fs'));
 
 function getJest(packageRoot) {
   const packageJSONPath = path.join(packageRoot, 'package.json');

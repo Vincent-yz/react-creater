@@ -10,10 +10,11 @@
 
 'use strict';
 
-const jestConfigPath = '../../../node_modules/jest/node_modules/jest-cli/node_modules/jest-config/build';
+const path = require('path');
+const reactCreaterDir = path.dirname(path.dirname(path.dirname(__dirname)));
+const jestConfigPath = path.join(reactCreaterDir, 'node_modules/jest-config/build');
 
 const fs = require('fs');
-const path = require('path');
 const paths = require('../../config/paths');
 const loadFromFile    = require(path.join(jestConfigPath, './loadFromFile'));
 // const loadFromPackage = require(path.join(jestConfigPath, './loadFromPackage'));
