@@ -10,10 +10,10 @@
 
 'use strict';
 
+const path = require('path');
 const reactCreaterDir = path.dirname(path.dirname(path.dirname(__dirname)));
 
 const chalk = require('chalk');
-const path = require('path');
 const fs = require(path.join(reactCreaterDir, 'node_modules', 'graceful-fs'));
 
 function getJest(packageRoot) {
