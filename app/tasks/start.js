@@ -241,7 +241,7 @@ function handleProxy(devServer){
   var key, rewrite;
   for(key in proxy){
     rewrite = {};
-    rewrite['^' + key] = key;
+    rewrite['^' + key] = '/';
     devServer.use(httpProxyMiddleware(key, {
       target: proxy[key], 
       changeOrigin: true,
