@@ -153,11 +153,12 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.(less|css)$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css?importLoaders=1!postcss!less',
-          extractTextPluginOptions
-        )
+        // loader: ExtractTextPlugin.extract(
+        //   'style',
+        //   'css?importLoaders=1!postcss!less',
+        //   extractTextPluginOptions
+        // )
+        loader: 'style!css?importLoaders=1!postcss!less'
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
@@ -246,6 +247,13 @@ module.exports = {
     // having to parse `index.html`.
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
+    }),
+    // 抽离公用代码
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+         return module.context && module.context.indexOf('node_modules') !== -1;
+      }
     })
   ],
   // Some libraries import Node modules but don't use them in the browser.
