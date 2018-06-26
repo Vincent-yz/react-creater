@@ -11,7 +11,7 @@ var seedsDir = path.join(reactCreaterDir, 'seeds');
 
 
 var workDir = process.cwd();
-var projectName = args._[1];
+var projectName = args._[1] || 'test';
 
 if (!projectName) {
   console.log(chalk.red("syntax error, project name could not be undefined!"));

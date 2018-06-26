@@ -1,6 +1,6 @@
 var path = require('path');
 
-var command = process.argv[2];
+var command = process.argv[2] || 'start';
 
 if(!/^(build|create|help|start|test)$/.test(command)){
 	command = 'help';
