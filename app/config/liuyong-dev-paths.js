@@ -88,7 +88,7 @@ module.exports = {
   servedPath:      getServedPath(resolveApp('package.json')),
   reactCreaterDir: reactCreaterDir,
   seedsDir:        seedsDir,
-  projectDir:      projectDir,
+  projectDir:      appDirectory,
   nodeCache:       resolveApp('node_modules/.cache/babel-loader'),
   babelResolveDir: resolveProject('node_modules'),
   rcConfig:        resolveApp('rc.conf.js'),
