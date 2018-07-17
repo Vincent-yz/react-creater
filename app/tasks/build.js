@@ -22,12 +22,17 @@ var measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 
 var useYarn = fs.existsSync(paths.yarnLockFile);
-
+var load = require('../utils/load')
+var merge = require('webpack-merge')
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
-
+var _command = process.argv[2] || 'start'
+if(load.loadModule[_command]) {
+  config = merge(config, load.loadModule[_command])
+  console.log(config)
+}
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild).then(previousFileSizes => {

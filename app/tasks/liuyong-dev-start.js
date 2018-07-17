@@ -21,21 +21,25 @@ var getProcessForPort = require('react-dev-utils/getProcessForPort');
 var openBrowser = require('react-dev-utils/openBrowser');
 var prompt = require('react-dev-utils/prompt');
 var fs = require('fs');
-var config = require('../config/webpack.config.dev');
+var config = require('../config/liuyong.webpack.config.dev');
 var paths = require('../config/liuyong-dev-paths');
 var exec = require('../utils/exec');
 var sh = require('shelljs');
 var _ = require('lodash');
-
+var load = require('../utils/load')
 var useYarn = fs.existsSync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
 var isInteractive = process.stdout.isTTY;
-
+var merge = require('webpack-merge')
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
-
+var _command = process.argv[2] || 'start'
+if(load.loadModule[_command]) {
+  config = merge(config, load.loadModule[_command])
+  console.log(config)
+}
 // Tools like Cloud9 rely on this.
 var DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 var compiler;

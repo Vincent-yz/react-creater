@@ -14,12 +14,14 @@ var fs = require('fs-extra');
 var path = require('path');
 var url = require('url');
 var webpack = require('webpack');
-var config = require('../config/webpack.config.prod');
+var config = require('../config/liuyong.webpack.config.prod');
 var paths = require('../config/liuyong-dev-paths');
 var checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 var FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 var measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 var printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
+var load = require('../utils/load')
+var merge = require('webpack-merge')
 
 var useYarn = fs.existsSync(paths.yarnLockFile);
 
@@ -27,7 +29,11 @@ var useYarn = fs.existsSync(paths.yarnLockFile);
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
-
+var _command = process.argv[2] || 'start'
+if(load.loadModule[_command]) {
+  config = merge(config, load.loadModule[_command])
+  console.log(config)
+}
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild).then(previousFileSizes => {

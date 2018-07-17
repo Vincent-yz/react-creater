@@ -26,7 +26,8 @@ var paths = require('../config/paths');
 var exec = require('../utils/exec');
 var sh = require('shelljs');
 var _ = require('lodash');
-
+var load = require('../utils/load')
+var merge = require('webpack-merge')
 var useYarn = fs.existsSync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
 var isInteractive = process.stdout.isTTY;
@@ -35,7 +36,11 @@ var isInteractive = process.stdout.isTTY;
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
-
+var _command = process.argv[2] || 'start'
+if(load.loadModule[_command]) {
+  config = merge(config, load.loadModule[_command])
+  console.log(config)
+}
 // Tools like Cloud9 rely on this.
 var DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 var compiler;

@@ -1,20 +1,21 @@
-'use strict';
+'use strict'
 
-var path = require('path');
-var fs = require('fs');
-var url = require('url');
+var path = require('path')
+var fs = require('fs')
+var url = require('url')
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
 //var appDirectory = fs.realpathSync(process.cwd());
-var appDirectory = "H:\\project\\webserviceh5"
-var reactCreaterDir = path.dirname(path.dirname(__dirname));
-function resolveApp(relativePath) {
-  return path.resolve(appDirectory, relativePath);
+var appDirectory = 'H:\\project\\webserviceh5'
+var reactCreaterDir = path.dirname(path.dirname(__dirname))
+
+function resolveApp (relativePath) {
+  return path.resolve(appDirectory, relativePath)
 }
 
-function resolveProject(relativePath){
-  return path.resolve(reactCreaterDir, relativePath);
+function resolveProject (relativePath) {
+  return path.resolve(reactCreaterDir, relativePath)
 }
 
 // We support resolving modules according to `NODE_PATH`.
@@ -36,23 +37,23 @@ var nodePaths = (process.env.NODE_PATH || '')
   .split(process.platform === 'win32' ? ';' : ':')
   .filter(Boolean)
   .filter(folder => !path.isAbsolute(folder))
-  .map(resolveApp);
+  .map(resolveApp)
 
-var envPublicUrl = process.env.PUBLIC_URL;
+var envPublicUrl = process.env.PUBLIC_URL
 
-function ensureSlash(path, needsSlash) {
-  var hasSlash = path.endsWith('/');
+function ensureSlash (path, needsSlash) {
+  var hasSlash = path.endsWith('/')
   if (hasSlash && !needsSlash) {
-    return path.substr(path, path.length - 1);
+    return path.substr(path, path.length - 1)
   } else if (!hasSlash && needsSlash) {
-    return path + '/';
+    return path + '/'
   } else {
-    return path;
+    return path
   }
 }
 
-function getPublicUrl(appPackageJson) {
-  return envPublicUrl || require(appPackageJson).homepage;
+function getPublicUrl (appPackageJson) {
+  return envPublicUrl || require(appPackageJson).homepage
 }
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
@@ -61,38 +62,39 @@ function getPublicUrl(appPackageJson) {
 // single-page apps that may serve index.html for nested URLs like /todos/42.
 // We can't use a relative path in HTML because we don't want to load something
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
-function getServedPath(appPackageJson) {
-  var publicUrl = getPublicUrl(appPackageJson);
+function getServedPath (appPackageJson) {
+  var publicUrl = getPublicUrl(appPackageJson)
   var servedUrl = envPublicUrl || (
     publicUrl ? url.parse(publicUrl).pathname : '/'
-  );
-  return ensureSlash(servedUrl, true);
+  )
+  return ensureSlash(servedUrl, true)
 }
 
-var seedsDir = path.join(reactCreaterDir, 'seeds');
-var projectDir = process.cwd();
+var seedsDir = path.join(reactCreaterDir, 'seeds')
+var projectDir = process.cwd()
 
 // config after eject: we're in ./config/
 module.exports = {
-  appBuild:        resolveApp('build'),
-  appPublic:       resolveApp('public'),
-  appHtml:         resolveApp('public/index.html'),
-  appIndexJs:      resolveApp('src/index.js'),
-  appPackageJson:  resolveProject('package.json'),
-  appSrc:          resolveApp('src'),
-  yarnLockFile:    resolveApp('yarn.lock'),
-  testsSetup:      resolveApp('src/setupTests.js'),
-  appNodeModules:  resolveApp('node_modules'),
-  nodePaths:       nodePaths,
-  publicUrl:       getPublicUrl(resolveApp('package.json')),
-  servedPath:      getServedPath(resolveApp('package.json')),
+  webpack: resolveApp('webpack'),
+  appBuild: resolveApp('build'),
+  appPublic: resolveApp('public'),
+  appHtml: resolveApp('public/index.html'),
+  appIndexJs: resolveApp('src/index.js'),
+  appPackageJson: resolveProject('package.json'),
+  appSrc: resolveApp('src'),
+  yarnLockFile: resolveApp('yarn.lock'),
+  testsSetup: resolveApp('src/setupTests.js'),
+  appNodeModules: resolveApp('node_modules'),
+  nodePaths: nodePaths,
+  publicUrl: getPublicUrl(resolveApp('package.json')),
+  servedPath: getServedPath(resolveApp('package.json')),
   reactCreaterDir: reactCreaterDir,
-  seedsDir:        seedsDir,
-  projectDir:      appDirectory,
-  nodeCache:       resolveApp('node_modules/.cache/babel-loader'),
+  seedsDir: seedsDir,
+  projectDir: appDirectory,
+  nodeCache: resolveApp('node_modules/.cache/babel-loader'),
   babelResolveDir: resolveProject('node_modules'),
-  rcConfig:        resolveApp('rc.conf.js'),
-};
+  rcConfig: resolveApp('rc.conf.js')
+}
 
 
 
