@@ -3,7 +3,7 @@
  * */
 var fs = require('fs')
 var path = require('path')
-var paths = require('../config/paths')
+var paths = require('../config/liuyong-dev-paths')
 function load (path, name) {
   if (name) {
     return require(path + name);
