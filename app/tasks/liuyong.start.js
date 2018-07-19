@@ -21,8 +21,8 @@ var getProcessForPort = require('react-dev-utils/getProcessForPort');
 var openBrowser = require('react-dev-utils/openBrowser');
 var prompt = require('react-dev-utils/prompt');
 var fs = require('fs');
-var config = require('../config/webpack.config.dev');
-var paths = require('../config/paths');
+var config = require('../config/liuyong.webpack.config.dev');
+var paths = require('../config/liuyong-dev-paths');
 var exec = require('../utils/exec');
 var sh = require('shelljs');
 var _ = require('lodash');
@@ -42,6 +42,7 @@ if(load.loadModule[_command]) {
   config = merge(config, load.loadModule[_command])
   console.log(config)
 }
+
 // Tools like Cloud9 rely on this.
 var DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 var compiler;
