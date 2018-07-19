@@ -25,7 +25,7 @@ function getModule () {
       patcher.__defineGetter__(name, _load)
     })
   } catch (e) {
-    console.log('自定义配置目录不存在' + paths.webpack)
+    console.log('自定义配置目录不存在:工程目录下' + paths.webpack)
     console.log('错误内容::' + JSON.stringify((e)))
   }
 
