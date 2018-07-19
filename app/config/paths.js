@@ -73,6 +73,7 @@ var projectDir = process.cwd();
 
 // config after eject: we're in ./config/
 module.exports = {
+  webpack: resolveApp('webpack'),
   appBuild:        resolveApp('build'),
   appPublic:       resolveApp('public'),
   appHtml:         resolveApp('public/index.html'),
