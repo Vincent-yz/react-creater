@@ -4,26 +4,33 @@
 var fs = require('fs')
 var path = require('path')
 var paths = require('../config/paths')
+
 function load (path, name) {
   if (name) {
-    return require(path + name);
+    return require(path + name)
   }
   return require(path)
 }
+
 function getModule () {
   patcher = {}
+  try {
+    fs.readdirSync(paths.webpack).forEach(function (filename) {
+      if (!/\.js$/.test(filename)) {
+        return
+      }
+      var name = path.basename(filename, '.js')
+      var _load = load.bind(null, paths.webpack + '/', name)
 
-  fs.readdirSync(paths.webpack).forEach(function (filename) {
-    if (!/\.js$/.test(filename)) {
-      return;
-    }
-    var name = path.basename(filename, '.js');
-    var _load = load.bind(null, paths.webpack + '/', name);
+      patcher.__defineGetter__(name, _load)
+    })
+  } catch (e) {
+    console.log(e)
+  }
 
-    patcher.__defineGetter__(name, _load);
-  });
-  return patcher;
+  return patcher
 }
+
 var loadData = getModule()
 console.log(loadData)
 module.exports = {

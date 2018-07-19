@@ -13,15 +13,19 @@ function load (path, name) {
 function getModule () {
   patcher = {}
 
-  fs.readdirSync(paths.webpack).forEach(function (filename) {
-    if (!/\.js$/.test(filename)) {
-      return;
-    }
-    var name = path.basename(filename, '.js');
-    var _load = load.bind(null, paths.webpack + '/', name);
+  try {
+    fs.readdirSync(paths.webpack).forEach(function (filename) {
+      if (!/\.js$/.test(filename)) {
+        return
+      }
+      var name = path.basename(filename, '.js')
+      var _load = load.bind(null, paths.webpack + '/', name)
 
-    patcher.__defineGetter__(name, _load);
-  });
+      patcher.__defineGetter__(name, _load)
+    })
+  } catch (e) {
+    console.log(e)
+  }
   return patcher;
 }
 var loadData = getModule()
