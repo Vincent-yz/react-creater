@@ -90,7 +90,7 @@ module.exports = {
   resolveLoader: {
     root: paths.babelResolveDir,
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -180,7 +180,7 @@ module.exports = {
       // Remember to add the new extension(s) to the "url" loader exclusion list.
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
@@ -226,7 +226,8 @@ module.exports = {
     // This helps ensure the builds are consistent if source hasn't changed:
     new webpack.optimize.OccurrenceOrderPlugin(),
     // Try to dedupe duplicated modules, if any:
-    new webpack.optimize.DedupePlugin(),
+    // 此插件废弃了
+    //new webpack.optimize.DedupePlugin(),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({
       compress: {
