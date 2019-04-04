@@ -14,12 +14,12 @@ var workDir = process.cwd();
 var projectName = args._[1] || 'test';
 
 if (!projectName) {
-  console.log(chalk.red("syntax error, project name could not be undefined!"));
+  console.log(chalk.red("project name could not be undefined!"));
   console.log(chalk.red('use: rc create PROJECT_NAME'));
   process.exit(1);
 }
 
-var projectFolder = workDir + '/' + projectName;
+var projectFolder = path.join(workDir, projectName);
 
 if (fs.existsSync(projectFolder)) {
   console.log(chalk.red("error: project is already created"));
@@ -31,8 +31,8 @@ var seedFolder = seedsDir;
 console.log(chalk.red('start to create project..'));
 sh.cp('-r', seedFolder + '/.', projectName);
 
-console.log(chalk.green("=========project initail finished !==========="));
-console.log(chalk.green("use below command"));
+console.log(chalk.green("=========project initail completed !==========="));
+console.log(chalk.green("follow below command to run your project"));
 console.log(chalk.green("cd " + projectName + " # enter project directory"));
 console.log(chalk.green("rc start # start development serve"));
 

@@ -24,28 +24,52 @@ const dependenciesPath = path.join(rcPath, 'node_modules');
 const createConfigFile = () => {
 	const jestConfig = {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
     ],
+    "resolver": "jest-pnp-resolver",
     "setupFiles": [
-      `${rcPath}/app/config/polyfills.js`,
+      "react-app-polyfill/jsdom",
       `${rootDir}/src/setupTests.js`
     ],
     "testPathIgnorePatterns": [
       "[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx)$": `${rcPath}/node_modules/babel-jest`,
+      "^.+\\.(js|jsx|ts|tsx)$": `${rcPath}/node_modules/babel-jest`,
       "^.+\\.css$": `${rcPath}/app/config/jest/cssTransform.js`,
-      "^(?!.*\\.(js|jsx|css|json)$)": `${rcPath}/app/config/jest/fileTransform.js`
+      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": `${rcPath}/app/config/jest/fileTransform.js`
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    }
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "watchPlugins": [
+      "/Users/vincentyeung/Sites/react-eg/cra-demo-1.5.5/node_modules/jest-watch-typeahead/filename.js",
+      "/Users/vincentyeung/Sites/react-eg/cra-demo-1.5.5/node_modules/jest-watch-typeahead/testname.js"
+    ]
   };
   const jestConfigStr = JSON.stringify(jestConfig, null, 2)
   fs.writeFileSync(configFile, new Buffer(jestConfigStr));
