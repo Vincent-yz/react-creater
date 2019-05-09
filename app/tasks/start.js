@@ -32,6 +32,7 @@ const paths = require('../config/paths');
 const configFactory = require('../config/webpack.config.prod');
 const createDevServerConfig = require('../config/webpackDevServer.config');
 const writeConf = require('../utils/writeConf');
+const alias = require('../utils/resolve').alias();
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
@@ -84,9 +85,11 @@ checkBrowsers(paths.appPath, isInteractive)
     }
     let config = configFactory('development');
     if(load.loadModule[_command]) {
-      config = merge(config, load.loadModule[_command])
-      console.log(config)
+      config = merge(config, load.loadModule[_command]);
+      console.log(config);
     }
+    // custom alias;
+    config = merge(config, alias);
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
     const useTypeScript = fs.existsSync(paths.appTsConfig);

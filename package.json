@@ -1,6 +1,6 @@
 {
   "name": "react-creater",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "a package provides suitable environment for developing react app.",
   "bin": {
     "rc": "./bin/rc"

@@ -29,6 +29,7 @@ const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
 const dllFactory = require('../config/dll');
 const writeConf = require('../utils/writeConf');
+const alias = require('../utils/resolve').alias();
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -51,7 +52,7 @@ const argv = process.argv.slice(2);
 const writeStatsJson = argv.indexOf('--stats') !== -1;
 
 // Generate configuration
-const config = configFactory('production');
+let config = configFactory('production');
 
 // merge custom config
 const load = require('../utils/load');
@@ -61,6 +62,8 @@ if(load.loadModule[_command]) {
   config = merge(config, load.loadModule[_command]);
   console.log(config);
 }
+// custom alias;
+config = merge(config, alias);
 
 // initial babel config if .babelrc isn't exist
 writeConf.babel();
